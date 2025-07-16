@@ -7,7 +7,8 @@ export class CreateProductDto {
   title: string;
 
   @Type(() => Number)
-  @IsNumber()
+  @IsNotEmpty()
+  @IsNumber({}, { message: 'price must be a valid number' })
   @Min(0)
   price: number;
 }

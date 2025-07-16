@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
 import { Repository } from 'typeorm';
-import { ConfigService } from '@nestjs/config';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { SupabaseService } from '../supabase/supabase.service';
+import { CreateProductDto } from './dto/create-product.request';
 
 @Injectable()
 export class ProductService {
@@ -16,7 +16,7 @@ export class ProductService {
   ) {}
 
   async create(
-    productData: Partial<Product>,
+    productData: CreateProductDto,
     file?: Express.Multer.File,
   ): Promise<Product> {
     let image: string | null = null;

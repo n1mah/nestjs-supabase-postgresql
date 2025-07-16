@@ -8,6 +8,7 @@ import {
 import { ProductService } from './product.service';
 import { Product } from './product.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { CreateProductDto } from './dto/create-product.request';
 
 @Controller('product')
 export class ProductController {
@@ -17,7 +18,7 @@ export class ProductController {
   @UseInterceptors(FileInterceptor('image'))
   async createProduct(
     @UploadedFile() file: Express.Multer.File,
-    @Body() body: { title: string; price: number },
+    @Body() body: CreateProductDto,
   ): Promise<Product> {
     return this.productService.create(body, file);
   }

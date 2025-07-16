@@ -13,7 +13,7 @@ export class SupabaseService {
     );
   }
 
-  async uploadImage(file: Express.Multer.File): Promise<string> {
+  async uploadBucketImages(file: Express.Multer.File): Promise<string> {
     const fileName = `${Date.now()}_${file.originalname}`;
 
     const { error } = await this.supabase.storage
